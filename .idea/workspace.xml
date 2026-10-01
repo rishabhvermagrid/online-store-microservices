@@ -5,32 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dadd025f-3148-48ea-82b7-4a2fb6d895d9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/catalog-service/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/catalog-service/src/main/java/com/rishabh/store/catalog/App.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/catalog-service/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/catalog-service/src/test/java/com/rishabh/store/catalog/AppTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config-server/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config-server/src/main/java/com/rishabh/store/config/App.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config-server/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config-server/src/test/java/com/rishabh/store/config/AppTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gateway-service/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gateway-service/src/main/java/com/rishabh/store/gateway/App.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gateway-service/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gateway-service/src/test/java/com/rishabh/store/gateway/AppTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/inventory-service/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/inventory-service/src/main/java/com/rishabh/store/inventory/App.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/inventory-service/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/inventory-service/src/test/java/com/rishabh/store/inventory/AppTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/rishabh/store/product/App.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/test/java/com/rishabh/store/product/AppTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/registry-service/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/registry-service/src/main/java/com/rishabh/store/registry/App.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/registry-service/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/registry-service/src/test/java/com/rishabh/store/registry/AppTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalog-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config-server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/config-server/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventory-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/inventory-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/registry-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/registry-service/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

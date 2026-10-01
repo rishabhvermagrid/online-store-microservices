@@ -17,26 +17,26 @@
 
 
     <dependencies>
-                 <!-- Web & REST APIs -->
+
                  <dependency>
                      <groupId>org.springframework.boot</groupId>
                      <artifactId>spring-boot-starter-web</artifactId>
                  </dependency>
 
-                 <!-- Eureka Client -->
+
                  <dependency>
                      <groupId>org.springframework.cloud</groupId>
                      <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
                  </dependency>
 
-                 <!-- Lombok -->
+
                  <dependency>
                      <groupId>org.projectlombok</groupId>
                      <artifactId>lombok</artifactId>
                      <optional>true</optional>
                  </dependency>
 
-                 <!-- Test Starter -->
+
                  <dependency>
                      <groupId>org.springframework.boot</groupId>
                      <artifactId>spring-boot-starter-test</artifactId>

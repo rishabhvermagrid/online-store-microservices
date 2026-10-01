@@ -7,6 +7,7 @@
   <version>1.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
+<!--  //automatically written, when you create service-->
   <modules>
     <module>config-server</module>
     <module>registry-service</module>
@@ -17,8 +18,6 @@
   </modules>
 
 
-
-<!--  -&#45;&#45;&#45;&#45;-->
 
   <name>online-store-microservices</name>
   <url>http://maven.apache.org</url>
@@ -34,7 +33,7 @@
 
   <dependencyManagement>
          <dependencies>
-           <!-- Spring Boot BOM -->
+
            <dependency>
              <groupId>org.springframework.boot</groupId>
              <artifactId>spring-boot-dependencies</artifactId>
@@ -42,7 +41,7 @@
              <type>pom</type>
              <scope>import</scope>
            </dependency>
-           <!-- Spring Cloud BOM -->
+
            <dependency>
              <groupId>org.springframework.cloud</groupId>
              <artifactId>spring-cloud-dependencies</artifactId>
@@ -54,7 +53,7 @@
   </dependencyManagement>
 
 
-  <!-- central plugin management for executable jars -->
+
      <build>
        <pluginManagement>
          <plugins>

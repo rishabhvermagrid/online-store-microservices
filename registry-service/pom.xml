@@ -17,13 +17,13 @@
 
 
     <dependencies>
-                 <!-- Eureka Server -->
+
                  <dependency>
                      <groupId>org.springframework.cloud</groupId>
                      <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
                  </dependency>
 
-                 <!-- Test Starter -->
+
                  <dependency>
                      <groupId>org.springframework.boot</groupId>
                      <artifactId>spring-boot-starter-test</artifactId>

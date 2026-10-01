@@ -17,19 +17,19 @@
 
 
     <dependencies>
-                 <!-- Spring Cloud Gateway -->
+
                  <dependency>
                      <groupId>org.springframework.cloud</groupId>
                      <artifactId>spring-cloud-starter-gateway</artifactId>
                  </dependency>
 
-                 <!-- Eureka Client (to discover backend services dynamically) -->
+
                  <dependency>
                      <groupId>org.springframework.cloud</groupId>
                      <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
                  </dependency>
 
-                 <!-- Test Starter -->
+
                  <dependency>
                      <groupId>org.springframework.boot</groupId>
                      <artifactId>spring-boot-starter-test</artifactId>
