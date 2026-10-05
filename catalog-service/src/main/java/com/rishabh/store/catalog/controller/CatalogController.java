@@ -1,5 +1,6 @@
 package com.rishabh.store.catalog.controller;
 
+import com.rishabh.store.catalog.dto.response.ApiResponse;
 import com.rishabh.store.catalog.model.Product;
 import com.rishabh.store.catalog.service.CatalogService;
 import org.springframework.http.ResponseEntity;
@@ -22,8 +23,11 @@ public class CatalogController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Product>> getProductsBySku(@RequestParam("sku") String sku){
-        return ResponseEntity.ok(catalogService.getProductsBySku(sku));
+    public ApiResponse<List<Product>> getProductsBySku(@RequestParam("sku") String sku){
+        List<Product> products = catalogService.getProductsBySku(sku);
+        if(products.isEmpty()){
+            return new ApiResponse<>(true,"No products found for SKU: "+ sku,products);
+        }
+        return new ApiResponse<>(true,"Products fetched successfully",products);
     }
-
 }
