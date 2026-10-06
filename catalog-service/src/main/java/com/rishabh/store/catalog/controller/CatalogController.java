@@ -5,7 +5,6 @@ import com.rishabh.store.catalog.model.Product;
 import com.rishabh.store.catalog.service.CatalogService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -18,16 +17,16 @@ public class CatalogController {
     }
 
     @GetMapping("/{uniqId}")
-    public ResponseEntity<Product> getProductByUniqId(@PathVariable("uniqId") String uniqId){
-        return ResponseEntity.ok(catalogService.getProductByUniqId(uniqId));
+    public ResponseEntity<ApiResponse<Product>> getProductByUniqId(@PathVariable("uniqId") String uniqId){
+        return ResponseEntity.ok(new ApiResponse<Product>(true,"Product fetched Successfully",catalogService.getProductByUniqId(uniqId)));
     }
 
     @GetMapping
-    public ApiResponse<List<Product>> getProductsBySku(@RequestParam("sku") String sku){
+    public ResponseEntity<ApiResponse<List<Product>>> getProductsBySku(@RequestParam("sku") String sku){
         List<Product> products = catalogService.getProductsBySku(sku);
         if(products.isEmpty()){
-            return new ApiResponse<>(true,"No products found for SKU: "+ sku,products);
+            return ResponseEntity.ok(new ApiResponse<>(true,"No products found for SKU: "+ sku,products));
         }
-        return new ApiResponse<>(true,"Products fetched successfully",products);
+        return ResponseEntity.ok(new ApiResponse<>(true,"Products fetched successfully",products));
     }
 }
