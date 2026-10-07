@@ -15,7 +15,6 @@
     <module>catalog-service</module>
     <module>inventory-service</module>
     <module>product-service</module>
-      <module>rishabh-service</module>
   </modules>
 
 

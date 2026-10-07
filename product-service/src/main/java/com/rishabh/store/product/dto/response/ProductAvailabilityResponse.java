@@ -1,4 +1,8 @@
 package com.rishabh.store.product.dto.response;
 
-public class ProductAvailabilityResponse {
+public record ProductAvailabilityResponse(
+        String uniqId,
+        boolean availability
+){
+
 }

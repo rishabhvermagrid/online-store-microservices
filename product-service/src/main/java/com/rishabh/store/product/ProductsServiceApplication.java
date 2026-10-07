@@ -2,10 +2,12 @@ package com.rishabh.store.product;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
-public class App {
+@EnableFeignClients
+public class ProductsServiceApplication {
     public static void main(String[] args) {
-        SpringApplication.run(App.class, args);
+        SpringApplication.run(ProductsServiceApplication.class, args);
     }
 }

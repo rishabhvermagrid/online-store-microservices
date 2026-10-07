@@ -24,7 +24,6 @@ public class InventoryService {
     public void generateAvailabilityFromCsv(){
         try {
             ClassPathResource resource = new ClassPathResource("products.csv");
-
             try (
                     BufferedReader reader = new BufferedReader(
                             new InputStreamReader(
@@ -32,7 +31,6 @@ public class InventoryService {
                                     StandardCharsets.UTF_8
                             )
                     );
-
                     CSVParser csvParser = CSVFormat.DEFAULT.builder()
                             .setHeader()
                             .setSkipHeaderRecord(true)
@@ -41,10 +39,10 @@ public class InventoryService {
                             .build()
                             .parse(reader)
             ) {
-
                 for (CSVRecord record : csvParser) {
                     String uniqId = record.get("uniq_id");
 
+                    //Returns: the current thread's ThreadLocalRandom
                     if (uniqId != null && !uniqId.isBlank()) {
                         boolean available =
                                 ThreadLocalRandom.current().nextBoolean();
@@ -74,4 +72,5 @@ public class InventoryService {
                 .map(uniqId -> new ProductAvailabilityResponse(uniqId,availabilityByProductId.get(uniqId)))
                 .toList();
     }
+
 }
