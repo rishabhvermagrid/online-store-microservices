@@ -6,6 +6,8 @@ import com.rishabh.store.product.dto.response.ApiResponse;
 import com.rishabh.store.product.dto.response.ProductAvailabilityResponse;
 import com.rishabh.store.product.dto.response.ProductResponse;
 import com.rishabh.store.product.exception.ProductUnavailableException;
+import com.rishabh.store.product.exception.ServiceUnavailableException;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +24,8 @@ public class ProductService {
         this.catalogClient = catalogClient;
         this.inventoryClient = inventoryClient;
     }
+
+    @CircuitBreaker(name="productDependencies", fallbackMethod = "getAvailableProductByUniqIdFallback")
     public ProductResponse getAvailableProductByUniqId(String uniqId){
         ProductResponse productResponse =  catalogClient.getProductByUniqId(uniqId).data();
         ApiResponse<List<ProductAvailabilityResponse>> inventoryResponse= inventoryClient.getAvailability(List.of(uniqId));
@@ -63,6 +67,18 @@ public class ProductService {
         return products.stream()
                 .filter(product -> availableProductIds.contains(product.uniqId()))
                 .toList();
+    }
+
+    //fallback method
+    public ProductResponse getAvailableProductByUniqIdFallback(String uniqId, Throwable throwable){
+        if(throwable instanceof ProductUnavailableException exception){
+            throw exception;
+        }
+        // if product is not available in catalog
+        if (throwable instanceof feign.FeignException.NotFound) {
+            throw new ProductUnavailableException("Product not found with id: " + uniqId);
+        }
+        throw new ServiceUnavailableException("Catalog or Inventory Service is unavailable");
     }
 
 }

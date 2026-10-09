@@ -1,12 +1,9 @@
 package com.rishabh.store.product.controller;
 
 import com.rishabh.store.product.dto.response.ApiResponse;
-import com.rishabh.store.product.dto.response.ProductAvailabilityResponse;
 import com.rishabh.store.product.dto.response.ProductResponse;
 import com.rishabh.store.product.service.ProductService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,6 +25,9 @@ public class ProductController {
     @GetMapping
     public ResponseEntity<ApiResponse<List<ProductResponse>>> getProductBySKU(@RequestParam("sku") String sku){
         List<ProductResponse> productResponseList = productService.getAvailableProductBySKU(sku);
+        if(productResponseList.isEmpty()){
+            return ResponseEntity.ok(new ApiResponse<>(true,"No products found with matching SKU : " + sku,productResponseList));
+        }
         return ResponseEntity.ok(new ApiResponse<>(true,"Products By SKU",productResponseList));
     }
 }
