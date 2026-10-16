@@ -8,6 +8,7 @@ import com.rishabh.store.product.dto.response.ProductResponse;
 import com.rishabh.store.product.exception.ProductUnavailableException;
 import com.rishabh.store.product.exception.ServiceUnavailableException;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +26,8 @@ public class ProductService {
         this.inventoryClient = inventoryClient;
     }
 
-    @CircuitBreaker(name="productDependencies", fallbackMethod = "getAvailableProductByUniqIdFallback")
+    @CircuitBreaker(name="productDependencies")
+    @Retry(name = "productDependencies", fallbackMethod = "getAvailableProductByUniqIdFallback")
     public ProductResponse getAvailableProductByUniqId(String uniqId){
         ProductResponse productResponse =  catalogClient.getProductByUniqId(uniqId).data();
         ApiResponse<List<ProductAvailabilityResponse>> inventoryResponse= inventoryClient.getAvailability(List.of(uniqId));
@@ -80,5 +82,15 @@ public class ProductService {
         }
         throw new ServiceUnavailableException("Catalog or Inventory Service is unavailable");
     }
-
 }
+/*
+How Both Work Together in Production:
+
+   1. Attempt 1: product-service calls catalog-service. If a network glitch occurs, @Retry intercepts it.
+   2. Attempt 2: Wait 500ms (backoff), retry. Still fails.
+   3. Attempt 3: Wait 1000ms (exponential multiplier 2), retry. Still fails.
+   4. Fallback: All 3 attempts exhausted ➔ getAvailableProductByUniqIdFallback(...) executes and returns a clean 503 response.
+   5. Circuit Breaker: Records this failure. Once failures exceed failure-rate-threshold: 50, the circuit OPENS, fast-failing future calls immediately to protect the downstream
+      service.
+
+ */
