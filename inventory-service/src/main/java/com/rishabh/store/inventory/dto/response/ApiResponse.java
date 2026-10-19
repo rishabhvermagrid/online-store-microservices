@@ -1,15 +1,14 @@
 package com.rishabh.store.inventory.dto.response;
 
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 public record ApiResponse<T>(
         boolean success,
         String message,
         T data,
-        LocalDateTime timestamp
+        Instant timestamp
 ) {
     public ApiResponse(boolean success, String message, T data) {
-        this(success, message, data, LocalDateTime.now());
+        this(success, message, data, Instant.now());
     }
 }

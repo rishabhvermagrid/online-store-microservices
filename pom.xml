@@ -15,6 +15,7 @@
     <module>catalog-service</module>
     <module>inventory-service</module>
     <module>product-service</module>
+    <module>order-service</module>
   </modules>
 
 
@@ -71,6 +72,54 @@
            </plugin>
          </plugins>
        </pluginManagement>
+
+       <plugins>
+         <!-- Checkstyle Plugin: checks code layout, naming conventions, imports -->
+         <plugin>
+           <groupId>org.apache.maven.plugins</groupId>
+           <artifactId>maven-checkstyle-plugin</artifactId>
+           <version>3.4.0</version>
+           <configuration>
+             <configLocation>google_checks.xml</configLocation>
+             <consoleOutput>true</consoleOutput>
+             <failsOnError>false</failsOnError>
+             <failOnViolation>false</failOnViolation>
+             <linkXRef>false</linkXRef>
+           </configuration>
+           <executions>
+             <execution>
+               <id>checkstyle-validation</id>
+               <phase>validate</phase>
+               <goals>
+                 <goal>check</goal>
+               </goals>
+             </execution>
+           </executions>
+         </plugin>
+
+         <!-- PMD Plugin: checks design flaws, bugs, dead code, and copy-paste duplicates (CPD) -->
+         <plugin>
+           <groupId>org.apache.maven.plugins</groupId>
+           <artifactId>maven-pmd-plugin</artifactId>
+           <version>3.25.0</version>
+           <configuration>
+             <targetJdk>21</targetJdk>
+             <printFailingErrors>true</printFailingErrors>
+             <linkXRef>false</linkXRef>
+             <failOnViolation>false</failOnViolation>
+           </configuration>
+           <executions>
+             <execution>
+               <id>pmd-analysis</id>
+               <phase>verify</phase>
+               <goals>
+                 <goal>check</goal>
+                 <goal>cpd-check</goal>
+               </goals>
+             </execution>
+           </executions>
+         </plugin>
+       </plugins>
      </build>
 
 </project>

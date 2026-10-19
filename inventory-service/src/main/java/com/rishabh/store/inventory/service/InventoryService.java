@@ -2,6 +2,7 @@ package com.rishabh.store.inventory.service;
 
 import com.rishabh.store.inventory.dto.response.ProductAvailabilityResponse;
 import jakarta.annotation.PostConstruct;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.springframework.core.io.ClassPathResource;
@@ -17,6 +18,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ThreadLocalRandom;
 
 @Service
+@Slf4j
 public class InventoryService {
     //for now HashMap is ok but in future it's not ok to use, A normal HashMap is not thread-safe. If several threads modify it at the same time, it can cause inconsistent data or errors.
     private final Map<String,Boolean> availabilityByProductId = new ConcurrentHashMap<>();
@@ -39,8 +41,8 @@ public class InventoryService {
                             .build()
                             .parse(reader)
             ) {
-                for (CSVRecord record : csvParser) {
-                    String uniqId = record.get("uniq_id");
+                for (CSVRecord csvRecord : csvParser) {
+                    String uniqId = csvRecord.get("uniq_id");
 
                     //Returns: the current thread's ThreadLocalRandom
                     if (uniqId != null && !uniqId.isBlank()) {
@@ -52,7 +54,7 @@ public class InventoryService {
                 }
             }
 
-            System.out.println(
+            log.info(
                     "Generated availability for "
                             + availabilityByProductId.size()
                             + " products."
@@ -68,7 +70,7 @@ public class InventoryService {
 
     public List<ProductAvailabilityResponse> getAvailability(List<String> uniqIds){
         return uniqIds.stream()
-                .filter(uniqId -> availabilityByProductId.containsKey(uniqId))
+                .filter(availabilityByProductId::containsKey)
                 .map(uniqId -> new ProductAvailabilityResponse(uniqId,availabilityByProductId.get(uniqId)))
                 .toList();
     }

@@ -9,10 +9,8 @@ import com.rishabh.store.product.exception.ProductUnavailableException;
 import com.rishabh.store.product.exception.ServiceUnavailableException;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.retry.annotation.Retry;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -49,21 +47,16 @@ public class ProductService {
         List<ProductResponse> products =
                 catalogClient.getProductsBySku(sku).data();
 
-//        List<String> uniqIds = new ArrayList<>();
-//        for(ProductResponse productResponse : productResponseList){
-//            uniqIds.add(productResponse.uniqId());
-//        }
-
         List<String> uniqIds = products.stream()
-                .map(product -> product.uniqId())
+                .map(ProductResponse::uniqId)
                 .toList();
 
         ApiResponse<List<ProductAvailabilityResponse>> avalabilityResponseList =
                 inventoryClient.getAvailability(uniqIds);
 
         Set<String> availableProductIds = avalabilityResponseList.data().stream()
-                .filter(product -> product.availability())
-                .map(product -> product.uniqId())
+                .filter(ProductAvailabilityResponse::availability)
+                .map(ProductAvailabilityResponse::uniqId)
                 .collect(Collectors.toSet());
 
         return products.stream()
